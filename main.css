@@ -1,0 +1,102 @@
+:root{
+    --main-bg-color:#ECD0EC;
+    --big-font-color:#7E2A53;
+    --footer-font-color:#461D3A;
+    --button-color:#BA71A2;
+}
+
+body{
+    background-color: var(--main-bg-color);
+}
+/* font styles */
+.playwrite-us-modern-guides-regular {
+    font-family: "Playwrite US Modern Guides", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .playwrite-de-va-guides-regular {
+    font-family: "Playwrite DE VA Guides", serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+  
+  .agu-display {
+    font-family: "Agu Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "MORF" 0;
+  }
+/* login parts */
+  #loginBody{
+    background-image: url(login.jpg);
+    background-repeat: no-repeat;
+    background-size: 400px 700px;
+  }
+  .loginHeader{
+    color:var(--big-font-color);
+    
+
+    font-size: 20px;
+    text-align: center;
+    font-weight: bolder;
+
+     font-family: "Agu Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+      "MORF" 0;
+    
+  }
+  .loginContainer{
+    margin-top: 50%;
+    width:70%;
+    height: 340px;
+    border: 2px dashed black;
+    background-color: var(--main-bg-color);
+  }
+
+  .loginBtn{
+    margin-left: 38%;
+    border: 2px dashed #461D3A;
+    background-color:var(--button-color);
+    color:#461D3A;
+    font-weight: bold;
+    padding: 8px 10px;
+
+    font-family: "Agu Display", serif;
+    font-optical-sizing: auto;
+    font-weight: 500;
+    font-style: normal;
+    font-variation-settings:"MORF" 0;
+  }
+  .loginBtn:hover{
+    background-color: #461D3A;
+    color:#D183A9;
+    border: 2px dashed #D183A9;
+  }
+
+  #loginNote{
+    font-size: x-small;
+    margin-top:35%;
+    float:right;
+    color:#7E2A53
+  }
+
+  
+  /* footer */
+  footer{
+    position: fixed;
+    bottom: 0;
+    font-size: x-small;
+    right: 0;
+    margin-right: 5px;
+    color:var(--footer-font-color);
+
+    
+  }
+
+  

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="candleTest.css">
+</head>
+<body>
+    <div>
+        <img src="activeBannergif.gif" alt="birthdayBanner" id="banner">
+    </div>
+    <div class="cake">
+        
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+        <div class="cake-body"></div>
+        <div class="cream-top"></div>
+        <div class="cream-side"></div>
+    </div>
+    <p>Make a blowing sound to blow out the candle!</p>
+    <footer class=".playwrite-us-modern-guides-regular">@customizeOnlyForEiNyeinMon2024</footer>
+    
+    <!-- any kind of sound will blow the candle and it's super sensitve -->
+    <!-- <script>
+        
+        const flame=document.querySelector(".flame");
+
+        //request to the user's microphone
+        navigator.mediaDevices.getUserMedia({audio:true}).then((stream)=>{
+            const audioContext=new (window.AudioContext || window.webkitAudioContext)();
+            const analyser=audioContext.createAnalyser();
+            const microphone=audioContext.createMediaStreamSource(stream);
+            const dataArray=new Uint8Array(analyser.frequencyBinCount);
+
+            analyser.fftSize=256;
+            microphone.connect(analyser);
+
+            function detectBlowing(){
+                analyser.getByteFrequencyData(dataArray);
+
+                //focus on detecting loud sound
+                const totalEnergy=dataArray.reduce((sum,value)=>sum+value,0)/dataArray.length;
+
+                const amplifiedEnergy=totalEnergy*5;
+
+                //log energy for debugging
+                console.log("Energy level:",amplifiedEnergy);
+
+                //if energy exceeds threshold, blow out the candle
+                if(amplifiedEnergy>10){
+                    console.log("Blowing detected");
+                    flame.classList.add("hidden");
+                }
+            requestAnimationFrame(detectBlowing);
+            }
+            detectBlowing();
+        }).catch((err)=>{
+            console.error("Microphone access denied",err);
+        });
+    </script> -->
+
+    <script>
+
+        const flame=document.querySelector(".flame");
+
+        navigator.mediaDevices.getUserMedia({audio:true}).then((stream)=>{
+        const audioContext=new (window.AudioContext||window.webkitAudioContext)();
+        const analyser=audioContext.createAnalyser();
+        const microphone=audioContext.createMediaStreamSource(stream);
+
+        //apply a bandpass filter;
+        const filter=audioContext.createBiquadFilter();
+        filter.type="bandpass";
+        filter.frequency.value=500;//focus on 500hz, typical for blowing
+        filter.Q=1;
+
+        microphone.connect(filter);
+        filter.connect(analyser);
+
+        let lastEnergy=0;
+        const dataArray=new Uint8Array(analyser.frequencyBinCount);
+        function detectBlowing(){
+            analyser.getByteFrequencyData(dataArray);
+
+            const totalEnergy=dataArray.reduce((sum,value)=>sum+value,0)/dataArray.length;
+            const amplifiedEnergy=totalEnergy*5;
+
+            if(amplifiedEnergy>50 && (amplifiedEnergy-lastEnergy)>10){
+                console.log("Blowing detected");
+                flame.classList.add("hidden");
+            }
+            lastEnergy=amplifiedEnergy;
+            requestAnimationFrame(detectBlowing);
+        }
+        detectBlowing();
+    }).catch((err)=>{
+        console.error("Error accessing microphone:",err);
+    });
+    </script>
+</body>
+</html>

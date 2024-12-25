@@ -27,6 +27,33 @@ body{
     bottom:0;
 }
 
+
+/* Cream on top */
+.cream-top {
+    position: absolute;
+    top: -10px;
+    left: 0;
+    width: 100%;
+    height: 30px;
+    background: linear-gradient(180deg, #fff, #ffe6e6);
+    border-radius: 50% 50% 0 0;
+    clip-path: polygon(0% 0%, 100% 0%, 90% 50%, 80% 20%, 70% 50%, 60% 20%, 50% 50%, 40% 20%, 30% 50%, 20% 20%, 10% 50%, 0% 20%);
+    z-index: 2; /* Above the cake body */
+}
+
+/* Cream on the side */
+.cream-side {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20px;
+    background: linear-gradient(180deg, #fff, #ffe6e6);
+    border-radius: 0 0 10px 10px;
+    clip-path: polygon(0% 100%, 10% 80%, 20% 100%, 30% 80%, 40% 100%, 50% 80%, 60% 100%, 70% 80%, 80% 100%, 90% 80%, 100% 100%);
+    z-index: 1; /* Below the top cream but above the cake body */
+}
+
 .candle{
     position: absolute;
     top:-60px;
@@ -62,8 +89,31 @@ body{
 
 }
 
+/* birthday banner */
+#banner{
+    background-repeat: no-repeat;
+    width: 100%;
+    /* margin-top: 0;
+    align-self: flex-start;
+    margin-left: auto; */
+    position: absolute;
+    top:10px;
+    left:10px;
+    bottom: 100px;
+}
 /* hidden flames */
 .hidden{
     opacity: 0;
     animation:none;
 }
+
+footer{
+    position: fixed;
+    bottom: 0;
+    font-size: x-small;
+    right: 0;
+    margin-right: 5px;
+    color:#461D3A;
+
+    
+  }
