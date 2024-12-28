@@ -86,6 +86,20 @@ body{
     color:#7E2A53
   }
 
+  /* wish  */
+  #wishBody{
+    background-image: url(wishBg.jpg);
+    background-repeat: no-repeat;
+    background-size: 400px 700px;
+  }
+  #wishPara{
+    color:var(--big-font-color);
+    font-weight: 500;
+    
+    text-align: justify;
+    justify-content: center;
+    margin:150px 35px 20px 35px;
+  }
   
   /* footer */
   footer{

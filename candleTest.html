@@ -20,6 +20,16 @@
         <div class="cream-side"></div>
     </div>
     <p>Make a blowing sound to blow out the candle!</p>
+
+    <div class="present hidden" id="present-box" onclick="goToNextPage()">
+        🎁
+
+    </div>
+    
+        <audio id="blow-audio">
+            <source src="birthdaySong.mp3">
+        </audio>
+    
     <footer class=".playwrite-us-modern-guides-regular">@customizeOnlyForEiNyeinMon2024</footer>
     
     <!-- any kind of sound will blow the candle and it's super sensitve -->
@@ -63,7 +73,12 @@
 
     <script>
 
+        function goToNextPage(){
+            window.location.href="wish.html";
+        }
+
         const flame=document.querySelector(".flame");
+        const audio=document.querySelector("#blow-audio");
 
         navigator.mediaDevices.getUserMedia({audio:true}).then((stream)=>{
         const audioContext=new (window.AudioContext||window.webkitAudioContext)();
@@ -81,6 +96,41 @@
 
         let lastEnergy=0;
         const dataArray=new Uint8Array(analyser.frequencyBinCount);
+
+        
+        function launchConfetti(){
+            const duration=3000;
+            const end=Date.now()+duration;
+
+            const frame=()=>{
+                confetti({
+                    particleCount:100,//number of particles per burst
+                    startVelocity:30,//speed of particcles
+                    spread:360,//spread angle
+                    origin:{
+                        x:Math.random(),//Random horizontal position
+                        y:Math.random() -0.2,//random vertical postion
+
+                    },
+                });
+
+                //continure launching confetti until the duration is over 
+                if(Date.now()<end){
+                    requestAnimationFrame(frame);
+                }
+            };
+            frame();
+
+            // Hide the cake and show the present box after confetti
+            setTimeout(() => {
+            document.querySelector(".cake").style.display = "none"; // Hide the cake
+            const presentBox = document.getElementById("present-box");
+            presentBox.classList.remove("hidden");
+            presentBox.classList.add("shown"); // Show the present box
+            }, duration); // Ensure the cake disappears after the confetti
+
+            
+        }
         function detectBlowing(){
             analyser.getByteFrequencyData(dataArray);
 
@@ -90,6 +140,11 @@
             if(amplifiedEnergy>50 && (amplifiedEnergy-lastEnergy)>10){
                 console.log("Blowing detected");
                 flame.classList.add("hidden");
+                status.textContent="Candle blown!";
+               // audio.play();
+               //lauch confetti
+              launchConfetti();
+                return;//stop detecting after blown
             }
             lastEnergy=amplifiedEnergy;
             requestAnimationFrame(detectBlowing);
@@ -99,5 +154,8 @@
         console.error("Error accessing microphone:",err);
     });
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
 </body>
 </html>

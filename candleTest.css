@@ -15,7 +15,7 @@ body{
     height: 100px;
     background: #ff99cc;
     border-radius: 10px;
-    margin-top:50px;
+    margin-top:150px;
 }
 
 .cake-body{
@@ -107,6 +107,12 @@ body{
     animation:none;
 }
 
+audio{
+    bottom: 10%;
+    left:15%;
+    position:fixed;
+    
+}
 footer{
     position: fixed;
     bottom: 0;
@@ -114,6 +120,35 @@ footer{
     right: 0;
     margin-right: 5px;
     color:#461D3A;
-
-    
   }
+
+  /* present box  */
+  .present {
+    width: 100px;
+    height: 100px;
+    background: red;
+    color: white;
+    font-size: 50px;
+    text-align: center;
+    line-height: 100px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    opacity: 0;
+    transition: opacity 1s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.present.hidden {
+    display: none;
+}
+
+.present.shown {
+    display: flex;
+    opacity: 1;
+    transform: scale(1.2);
+}
