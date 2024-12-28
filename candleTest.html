@@ -19,7 +19,8 @@
         <div class="cream-top"></div>
         <div class="cream-side"></div>
     </div>
-    <p>Make a blowing sound to blow out the candle!</p>
+    <p id="instruct">Make a blowing sound to blow out the candle!</p>
+    
 
     <div class="present hidden" id="present-box" onclick="goToNextPage()">
         🎁
@@ -124,9 +125,13 @@
             // Hide the cake and show the present box after confetti
             setTimeout(() => {
             document.querySelector(".cake").style.display = "none"; // Hide the cake
+            
+            
             const presentBox = document.getElementById("present-box");
             presentBox.classList.remove("hidden");
             presentBox.classList.add("shown"); // Show the present box
+            const instruct=document.getElementById("instruct");
+            instruct.textContent="Click to retrieve your present!";//new p context
             }, duration); // Ensure the cake disappears after the confetti
 
             
