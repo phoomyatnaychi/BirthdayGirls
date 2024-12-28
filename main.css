@@ -5,9 +5,7 @@
     --button-color:#BA71A2;
 }
 
-body{
-    background-color: var(--main-bg-color);
-}
+
 /* font styles */
 .playwrite-us-modern-guides-regular {
     font-family: "Playwrite US Modern Guides", serif;
